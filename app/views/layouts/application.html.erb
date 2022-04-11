@@ -17,7 +17,9 @@
     <%= render 'layouts/topnavbar' %>
 
     <main class="container">
-    <%= yield %>
+
+      <%= render 'layouts/flash_messeges' %>
+      <%= yield %>
     </main>
 
     <%= render 'layouts/footer' %>

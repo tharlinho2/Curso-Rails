@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
     belongs_to :category
+    belongs_to :user
 
     validates :title, length: {minimum:3, maximum: 60}
     validates :body, length: {minimum:5}

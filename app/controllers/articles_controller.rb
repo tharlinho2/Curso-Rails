@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  include Paginable
+  
   before_action :authenticate_user!, except: %i[ index show] 
   before_action :set_article, only: %i[ edit update show destroy ]
 
@@ -6,7 +8,6 @@ class ArticlesController < ApplicationController
     @highlights = Article.desc_order.first(3)
 
     highlights_ids = @highlights.pluck(:id).join(',')
-    current_page = (params[:page] || 1).to_i
 
     @articles = Article.without_highlights(highlights_ids)
     .desc_order

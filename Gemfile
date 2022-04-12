@@ -25,6 +25,8 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'spring'
   gem "letter_opener", "~> 1.8"
+  gem 'solargraph'
+  gem 'rubocop'
 end
 
 group :test do

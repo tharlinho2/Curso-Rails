@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: %i[ index show] 
-  before_action :set_article, only: %i[edit update show destroy]
+  before_action :set_article, only: %i[ edit update show destroy ]
 
   def index
     @highlights = Article.desc_order.first(3)
@@ -53,6 +53,7 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+    authorize @article
   end
-  
+
 end

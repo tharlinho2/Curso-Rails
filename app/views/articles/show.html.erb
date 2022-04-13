@@ -1,15 +1,24 @@
 <article class="blog-post">
-    <h2><%= @article.title %></h2>
-    <p class="blog-post-meta">
-        <%= render 'article_detail', article: @article %>
-    </p>
-    
-    <p><%= @article.body %></p>
-    
-    <%= link_to "Back", root_path, class: "btn btn-outline-secondary" %>
-    <%= link_to "delete", article_path(@article), 
-        method: :delete, 
-        data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" if policy(@article).destroy? %>
-    <%= link_to "Edit", edit_article_path(@article), 
-        class: 'btn btn-outline-primary' if policy(@article).update? %>
+  <h2><%= @article.title %></h2>
+  <p class="blog-post-meta">
+    <%= render 'article_detail', article: @article %>
+  </p>
+
+  <p><%= @article.body %></p>
+
+  <%= link_to "Back", root_path, class: "btn btn-outline-secondary" %> <%=
+  link_to "delete", article_path(@article), method: :delete, data: { confirm:
+  'Are you sure?' }, class: "btn btn-outline-danger" if
+  policy(@article).destroy? %> <%= link_to "Edit", edit_article_path(@article),
+  class: 'btn btn-outline-primary' if policy(@article).update? %>
+
+  <h6 class="mt-3">Comments</h6>
+  <%= render @article.comments %>
+
+  <h5 class="mt-3">Add a comment:</h5>
+  <% if policy(@article).create? %>
+    <%= render 'comments/form'%>
+  <% else %>
+    Please, login to create a comment.
+  <% end %>
 </article>
